@@ -1,0 +1,78 @@
+npm i react-router-dom  --- по этой команде ставится последння версия 6.3.0 (latest)
+
+npm i react-router-dom@5.3.3   --- это 5 версия на ней очень мнгого проектов
+
+
+5.3.0 
+
+Эта библиотека состоит из 4 основных сущностей (компонентов):
+
+1- BrowserRouter, ее обычно переименовывают в Router,  (для удобства) и получается конструкция:
+
+import { BrowserRouter as Router} from "react-router-dom";
+
+2- Route , маршрут и у него основной атрибут path="" он отслеживает URL адреса для каждого из маршрутов что прописывается в кавычках
+
+3- Switch - в него оборачиваются все маршруты, и он по URL рендерит нужный  router. 
+он нужен для того, чтобы в момент времени в зависимости от той страницы где находимся, рендерился один компонент.
+Но тут есть нюансы с отображением на странице, а именно когда и нужно отобразить несколько компонентов,  
+а если не нужно то для решения использукется атрибут exact .
+
+4- Link - сами ссылки, по которым и будет происходить переход на компоненты по маршруту
+
+
+Пример:
+
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Links from "./Link";
+
+
+const Step1 = () => <>Step 1</>
+const Step2 = () => <>Step 2</>
+const Step3 = () => <>Step 3</>
+const Result = () => <>Result</>
+
+const Header = () => <h1>Voitka form</h1>
+
+
+
+function App() {
+  return (
+    <>
+      <Header />
+      <Router>
+        <Links/>
+        <br/>
+        <Switch>
+          <Route exact path="/" component={Step1} />
+          <Route path="/step2" component={Step2} />
+          <Route path="/step3" component={Step3} />
+          <Route path="/result" component={Result} />
+        </Switch>
+      </Router>
+    </>
+}
+
+
+а в другом компоненте со ссылками:
+
+import { Link } from "react-router-dom";  ----- импортирую компонент Link
+
+const Links = () => {
+    return (
+        <>
+            <a href="/">Step 1  </a>  ---- была просто ссылка, а нужно изменить синтаксис
+
+            <Link to="/"> Step 1  </Link>   ---- вместо a делаю Link, и вместо атрибута href, делаю to
+            <Link to="/step2"> Step 2  </Link>
+            <Link to="/step3"> Step 3  </Link>
+            <Link to="/result"> result  </Link> 
+        </>
+    )
+}
+
+
+
+
+export default Links;

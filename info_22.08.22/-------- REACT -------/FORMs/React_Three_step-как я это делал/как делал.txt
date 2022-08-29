@@ -1,0 +1,21 @@
+https://www.youtube.com/watch?v=yYq0rWESsNY
+
+
+1.
+Важно зайти в папку my-form  в консоли, это косячок если создаешь проект по create react app:
+
+cd my-form
+
+
+1.1
+устанавливаю зависимости:
+
+- npm i react-router-dom --save                                  -- маршрутизатор по шагам формы 
+- npm i yup --save                                               --- для валидации формы
+- npm install @mui/icons-material --save                       --- material ui
+- npm install @mui/material @emotion/react @emotion/styled      --save   ---- иконки для него
+- npm i libphonenumber-js --save                                 -- для нормализвции  телефонного номера
+- npm install --save react-dropzone                               --- для возможности принемать файлы  перетаскивая его 
+- npm i react-hook-form --save                                      --- для работы с формами
+- npm i sweetalert2 --save
+- npm i react-confetti --save                                      -- конфети пру одачной отправке формы

@@ -1,0 +1,27 @@
+https://code.mu/ru/javascript/manual/lang/String/
+
+
+
+Функция String
+
+
+Функция String преобразовывает переданное значение в строку. 
+Преобразования для примитивов (числа, строки и другие простые типы) происходят самым очевидным образом. 
+Например: true - 'true', 5 - '5'. А объекты чаще всего преобразовываются к '[object Object]', но могут быть исключения.
+
+Синтаксис
+String(что нужно преобразовать);
+
+
+Пример 
+Преобразуем несколько значений в строку:
+
+String(0) // '0'
+String(NaN) // 'NaN'
+String(false) // 'false'
+String('str') // 'str'
+String(null) // 'null'
+String(undefined) // 'undefined'
+
+String({}) // '[object Object]'
+String([1, 2, 3]) // '1,2,3'

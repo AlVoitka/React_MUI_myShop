@@ -1,0 +1,78 @@
+https://www.youtube.com/watch?v=veMDnBt30pk
+
+/////   Fork  ////
+1.
+когда заходишь на чужей репоз в правом верхнем углу есть кнопка fork, нажимаю
+и на моем аккаунте создается клон этого проекта
+
+2. Для того чтобы склонировать его себе на комп
+
+git clone https://github.com/AlVoitka/ultimate-react-hook-form-form 
+--- адрес копирую из поля пути браузера ( там где ввоожу адрес сайта или поиска)
+важно указать сам репоз, а не папку внутри его 
+
+!!
+Имеет значение куда будет клонироваться проект те нужно запускать комантдную строку из попки куда хочу его загрузить
+
+В корневой папке проекта создается папка с названием репоза, а это есть не оченьи лучше просто все из нее вырезать и вставить в папку проекта,
+ а ее удалить. Это для того чтобы путь в терминале был правильный!
+
+ 
+3. 
+Проверка зависимостей:
+
+npm list
+
+UNMET DEPENDENCY = НЕУДОВЛЕТВОРЕННАЯ ЗАВИСИМОСТЬ  --- по команде фиксируются список зависимостей из package.json
+и говорится что зависимости не удовлетварены.
+
+
+PS E:\WebDev_Finish\React_Form_MUI> npm list
+completed@0.1.0 E:\WebDev_Finish\React_Form_MUI
+├── UNMET DEPENDENCY @hookform/resolvers@^0.1.0
+├── UNMET DEPENDENCY @material-ui/core@^4.11.0
+├── UNMET DEPENDENCY @material-ui/icons@^4.9.1
+├── UNMET DEPENDENCY @testing-library/jest-dom@^4.2.4
+├── UNMET DEPENDENCY @testing-library/react@^9.3.2
+├── UNMET DEPENDENCY @testing-library/user-event@^7.1.2
+├── UNMET DEPENDENCY concurrently@^5.2.0
+├── UNMET DEPENDENCY cors@^2.8.5
+├── UNMET DEPENDENCY express-fileupload@^1.1.7-alpha.3
+├── UNMET DEPENDENCY express-rate-limit@^5.2.6
+├── UNMET DEPENDENCY express@^4.17.1
+├── UNMET DEPENDENCY libphonenumber-js@^1.7.56
+├── UNMET DEPENDENCY material-ui@^0.20.2
+├── UNMET DEPENDENCY morgan@^1.10.0
+├── UNMET DEPENDENCY react-confetti@^6.0.0
+├── UNMET DEPENDENCY react-dom@^16.13.1
+├── UNMET DEPENDENCY react-dropzone@^11.0.3
+├── UNMET DEPENDENCY react-hook-form@^6.4.0
+├── UNMET DEPENDENCY react-router-dom@^5.2.0
+├── UNMET DEPENDENCY react-scripts@3.4.3
+├── UNMET DEPENDENCY react@^16.13.1
+├── UNMET DEPENDENCY sweetalert2@^9.17.1
+└── UNMET DEPENDENCY yup@^0.29.3
+
+3.1
+
+npm i
+
+по команде подтягиваются все зависимости
+
+снова проверка: npm list   и все ОК!!!
+
+PS E:\WebDev_Finish\React_Form_MUI> npm list
+completed@0.1.0 E:\WebDev_Finish\React_Form_MUI\ultimate-react-hook-form-form
+├── @hookform/resolvers@0.1.0
+├── @material-ui/core@4.11.0
+├── @material-ui/icons@4.9.1
+├── @testing-library/jest-dom@4.2.4
+├── @testing-library/react@9.5.0
+├── bindings@1.5.0 extraneous
+├── concurrently@5.3.0
+├── cors@2.8.5
+├── express-fileupload@1.2.0
+├── express-rate-limit@5.2.6
+├── express@4.17.1
+├── file-uri-to-path@1.0.0 extraneous
+├── libphonenumber-js@1.7.56

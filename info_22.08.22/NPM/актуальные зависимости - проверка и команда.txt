@@ -1,0 +1,25 @@
+https://www.udemy.com/course/javascript_full/learn/lecture/28729616#questions
+
+
+1.
+https://www.npmjs.com/package/react-router-dom
+
+2.
+В инпуте поиск вводим необходимый пакет
+
+3.
+Вкладка versions 
+выбираю нужную мне версию и кликаю по номеру
+- и в поле install появляется строка для копирования с актуальной командой
+
+
+пример:
+
+по команде
+
+npm i react-router-dom    --- скачивается самая последняя версия  6.3.0
+
+а мне нужна исключительно пятая версия. Я зашел на сайт https://www.npmjs.com/package/package
+в поиске --react-router-dom, потом выбраль нужную мне версию и получил команду:
+
+npm i react-router-dom@5.2.0

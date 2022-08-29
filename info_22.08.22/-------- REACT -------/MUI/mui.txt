@@ -1,0 +1,77 @@
+https://www.youtube.com/watch?v=OZ_FUaV_xbg&t=1768s
+
+
+1.
+npm i  --- подтягиваю зависимости к проекту
+
+
+2.
+Устанавливаю паке стартера MUI - версия 5.10.1  === https://mui.com/material-ui/getting-started/installation/
+
+npm install @mui/material @emotion/react @emotion/styled
+
+тут само ядро + библиотеки css
+
+
+
+3.
+Roboto font
+Требуется подключить шрифт roboto в index.html
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>
+
+
+4.
+SVG icons
+Нужно подключить иконки:
+
+npm install @mui/icons-material
+
+5.
+
+nmp start  - запускаю приложение
+
+
+
+
+
+//////////////////    зменение цвета   /////////////////
+
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { ThemeProvider } from '@emotion/react'; ------1. импорирую эту сущность
+import { createTheme } from '@mui/material'; -------2. и эту
+
+import './index.css';
+import App from './components/App';
+
+
+const theme = createTheme({          ----- 3. создаю переменную и в ней назначаю основной и вторичный щыет
+    palette: {                             они присутствуют во всех компонентах
+        primary: {                           и им задаю цвета
+            main: '#61dafb'
+        },
+        secondary: {
+            main: '#00ff00'
+        }
+    }
+});
+
+ReactDOM.render(
+    <React.StrictMode>
+        <ThemeProvider theme={theme}>    -----4. обарачиваю свое прилажение и принимаю главный пров сос своей темой
+            <App />
+        </ThemeProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
+
+
+
+
