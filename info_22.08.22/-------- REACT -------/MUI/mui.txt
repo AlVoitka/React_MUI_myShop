@@ -73,5 +73,183 @@ ReactDOM.render(
 );
 
 
+/////////////////////////  SnackBar ///////////////////
+
+///////////////////  Всплывает при помещении товара в карзину  ///////////////////////////
+
+1.
+
+import { Alert, Snackbar } from '@mui/material'
+
+function Snack({isOpen, handleClose = Function.prototype}) {
+    return (
+        <Snackbar
+            open={isOpen}   -------- 1. Проп open из API принимает функцию на открытие
+            onClose={handleClose}  ------2. Проп onClose из API  принимает функцию на закрытие
+            autoHideDuration={3000  ----- 3. Проп на автозакрытие 3000мс
+            message="Note archived"   -----4. В простейшем варианте сообщение на черном фоне.
+            action={action}  -- 6. Дополнительная кнопка на снекбаре
+        >
+            <Alert                   -----5. Если хочу цветное сообщение, то нужно вложить в Snackbar еще компонент Alert
+                severity="secondary"  ----7. Это цвет фона алерта
+                variant='filled'
+                color="info"
+                icon={false}
+            >Product successfully added to cart</Alert>
+        </Snackbar>
+    )
+}
+
+export default Snack;
 
 
+2.
+
+import { Alert, Snackbar } from '@mui/material' 
+
+function Snack({isOpen, handleClose = Function.prototype}) {   ----1. Принемаю два пропса (две функции)
+    return (
+        <Snackbar
+            open={isOpen}    -----2. Передаю в проп состяянеи по умолчанию (false)
+            onClose={handleClose} -----2. Передаю их в проп функцию по изменению состояния
+            autoHideDuration={3000}
+        >
+            <Alert
+                severity="secondary"
+                variant='filled'
+                color="info"
+                icon={false}
+            >Product successfully added to cart</Alert>
+        </Snackbar>
+    )
+}
+
+export default Snack;
+
+
+3.
+
+import { useState } from 'react';
+
+import Basket from './Basket';
+import Header from './Header';
+import GoodsList from './GoodsList';
+import Search from './Search';
+import Snack from './Snack';      -------------1. Импортирую в основное приложние
+import SuccessMadal from './SuccessModal';
+
+import { Container } from '@mui/material';
+import { goods } from '../data/goods';
+
+
+const addToOrder = (goodsItem) => {
+        let quantity = 1;
+
+        const indexInOrder = order.findIndex(
+            (item) => item.id === goodsItem.id
+        );
+
+        if (indexInOrder > -1) {
+            quantity = order[indexInOrder].quantity + 1;
+
+            setOrder(order.map((item) => {
+                    if (item.id !== goodsItem.id) return item;
+
+                    return {
+                        id: item.id,
+                        name: item.name,
+                        price: item.price,
+                        quantity,
+                    };
+                }),
+            );
+        } else {
+            setOrder([
+                    ...order,
+                    {
+                        id: goodsItem.id,
+                        name: goodsItem.name,
+                        price: goodsItem.price,
+                        quantity,
+                    },
+                ],
+            );
+        }
+
+        setSnackOpen(true);  ------5. И в функции по добавлению товара в корзину меняю состояние на true
+    };                             в тот момент когда товар поместится в корзину.
+
+
+
+const App = () => {
+    const [order, setOrder] = useState([]);
+    const [search, setSearch] = useState('');
+    const [products, setProducts] = useState(goods);
+    const [isCartOpen, setCartOpen] = useState(false);
+    const [isSnackOpen, setSnackOpen] = useState(false);  ----4. Создаю состояние для работы с ним
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    
+    return (
+        <>
+        <Header
+            handleCart={()=> setCartOpen(true)}
+            orderLen={order.length}
+        />
+        <Container
+            sx={{
+                mt: '1rem'
+            }}
+        >
+            <Search
+                value={search}
+                onChange={handleChange}
+            />
+            <GoodsList
+                goods={products}
+                setOrder={addToOrder}
+            />
+        </Container>
+        <Basket
+            order={order}
+            removeFromOrder={removeFromOrder}
+            cartOpen={isCartOpen}
+            closeCart={() => setCartOpen(false)}
+        />
+        <Snack  -------------------- 2. Размещаю в приложении
+            isOpen={isSnackOpen}  -------3.  передаю текущее состояние (false) 
+            handleClose={() => setSnackOpen(false)}  -------3. как пропсы принимею  handleClose, которая в нужный момент 
+        />                                               изменит состояние на true
+        <SuccessMadal  
+            modalOpen={isModalOpen}   
+            handleModalClose={() => setModalOpen(false)} 
+        />
+        </>
+    );
+}
+
+export default App;
+
+
+Объяснение:
+
+Снекбар имеет два обязательных пропа на закрытие и открытие, первый принимает состояние, а второй изменяет его.
+
+
+
+
+
+/////////////////////////////////// Modal  ///////////////////
+
+в модалке такой же прощесс, только триггер по вызобу окна будет кнопка.
+
+По клику в корзине на кнопку вызовется функция onClick={handleModal}, которя спущена через прорсы.
+       
+
+        <Basket
+            order={order}
+            removeFromOrder={removeFromOrder}
+            cartOpen={isCartOpen}
+            closeCart={() => setCartOpen(false)}
+            handleModal={() => setModalOpen(true)}  ----- сама функция размещается восновном приложжении в компоненте Basket  и 
+        />                                      меняет состояние на true

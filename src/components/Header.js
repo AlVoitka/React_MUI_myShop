@@ -10,7 +10,7 @@ function Header({handleCart, orderLen}) {
                     component="span"
                     sx={{flexGrow: 1}}
                 >
-                    MUI Shop
+                    Books Shop
                 </Typography>
                 <IconButton
                     color="inherit"

@@ -5,9 +5,11 @@ import Header from './Header';
 import GoodsList from './GoodsList';
 import Search from './Search';
 import Snack from './Snack';
+import SuccessMadal from './SuccessModal';
 
 import { Container } from '@mui/material';
 import { goods } from '../data/goods';
+
 
 const App = () => {
     const [order, setOrder] = useState([]);
@@ -15,6 +17,7 @@ const App = () => {
     const [products, setProducts] = useState(goods);
     const [isCartOpen, setCartOpen] = useState(false);
     const [isSnackOpen, setSnackOpen] = useState(false);
+    const [isModalOpen, setModalOpen] = useState(false);
 
     const handleChange = (e) => {
         if (!e.target.value) {
@@ -71,6 +74,11 @@ const App = () => {
         setOrder(order.filter((item) => item.id !== goodsItem));
     };
 
+    const activateModal = () => {
+        setModalOpen(true)
+        setCartOpen(false)
+    }
+
     return (
         <>
         <Header
@@ -96,10 +104,15 @@ const App = () => {
             removeFromOrder={removeFromOrder}
             cartOpen={isCartOpen}
             closeCart={() => setCartOpen(false)}
+            handleModal={activateModal}
         />
         <Snack
             isOpen={isSnackOpen}
             handleClose={() => setSnackOpen(false)}
+        />
+        <SuccessMadal
+            modalOpen={isModalOpen}
+            modalClose={() => setModalOpen(false)}
         />
         </>
     );

@@ -1,4 +1,4 @@
-import { Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { Button, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import { ShoppingBasket } from "@mui/icons-material"
 import BasketItem from "./BasketItem";
 
@@ -6,6 +6,7 @@ const Basket = (props) => {
     const {
         cartOpen,
         closeCart = Function.prototype,
+        handleModal,
         order = [],
         removeFromOrder
     } = props;
@@ -21,29 +22,46 @@ const Basket = (props) => {
                     <ListItemIcon>
                         <ShoppingBasket />
                     </ListItemIcon>
-                    <ListItemText primary="Корзина" />
+                    <ListItemText primary="Basket" />
                 </ListItem>
                 <Divider />
 
                 {!order.length ? (
-                    <ListItem>Корзина пуста!</ListItem>
+                    <ListItem>Basket is empty!</ListItem>
                 ) : (
                     <>
                     {order.map((item) => (
                         <BasketItem key={item.name} removeFromOrder={removeFromOrder} {...item} />
                     ))}
-                    <Divider />
+                    
                     <ListItem>
-                        <Typography sx={{fontWeight: 700}}>
-                            Общая стоимость:{' '}
+                        <Typography sx={{fontWeight: 400}}>
+                            Total:{' '}
                             {order.reduce((acc, item) => {
                             return acc + item.price * item.quantity;
                             }, 0)}{' '}
-                            рублей.
+                            $.
                         </Typography>
                     </ListItem>
                     </>
                 )}
+                <Divider />
+                <Button
+                    variant='outlined'
+                    color='success'
+                    sx={{
+                        mt:'15px',
+                        ml: '33%'
+                    }}
+                    onClick={handleModal}
+                    
+                >
+                    Buy Now {' '}
+                            {order.reduce((acc, item) => {
+                            return acc + item.price * item.quantity;
+                            }, 0)}{' '}
+                            $
+                </Button>
 
             </List>
         </Drawer>

@@ -7,12 +7,14 @@ const BasketItem = ({removeFromOrder, id, name, price, quantity}) => {
             <Typography
                 variant="body1"
             >
-                {name} {price}руб x{quantity}
+                {name} {price}$ x{quantity}
             </Typography>
             <IconButton
                 onClick={() => removeFromOrder(id)}
             >
-                <Delete />
+                <Delete 
+                    color='warning'
+                />
             </IconButton>
         </ListItem>
     );

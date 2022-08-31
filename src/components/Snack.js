@@ -9,7 +9,10 @@ function Snack({isOpen, handleClose = Function.prototype}) {
         >
             <Alert
                 severity="success"
-            >Товар добавлен в корзину!</Alert>
+                variant='filled'
+                color="info"
+                icon={false}
+            >Product successfully added to cart</Alert>
         </Snackbar>
     )
 }

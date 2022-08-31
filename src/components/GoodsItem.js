@@ -30,7 +30,7 @@ const GoodsItem = (props) => {
                         variant='body1'
 
                     >
-                        Цена: {price} руб.
+                        Price: {price} usd.
 
                     </Typography>
 
@@ -48,7 +48,7 @@ const GoodsItem = (props) => {
                             })
                         }
                     >
-                        Купить
+                        Buy
                     </Button>
 
                 </CardActions>
